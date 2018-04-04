@@ -1,0 +1,1091 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0034)http://www.wkzfxuexi.com/login.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <title>登录页面 - Cloud云学院</title>
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 
+ <meta name="description" content="">
+ <meta name="keywords" content="">
+ <script src="/statics/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+ <script src="/statics/js/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
+ <link href="/statics/css/login.css" type="text/css" rel="stylesheet">
+ <link href="/statics/css/elearning30login.css" type="text/css" rel="stylesheet">
+ <link href="/statics/css/jquery.mCustomScrollbar.css" type="text/css" rel="stylesheet">
+ <style type="text/css">
+ div.pagefooter .last {display:none;}
+ .form-input {
+ border: solid 1px #e4e4e4;
+ height: 30px;
+ line-height: 20px;
+ padding: 4px 10px;
+ width: 100%;
+ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+ -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+ -moz-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+ -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+}
+ </style>
+</head>
+<body style="margin:auto;">
+ <div class="headernotice" style="background-color:#444444;">
+ <div class="noticemsg" style="color:#F0F0F0;">
+ <span class="content"></span></div>
+ </div> 
+ 
+ <div class="pageheader">
+ <div class="content">
+ <span class="leftarea" style="background-image: url(&#39;http://doc2.yunxuetang.cn/media/orgfile/logo/201702/72bb6a95b80a47d49eb87f0c0b08d32f_161033268.png?r=adxyo5t4&#39;);"></span>
+ <div class="pull-right area-aso">
+ <span class="dis-tabcell prelative v-mid" id="qrCode">
+ <img src="/statics/images/code.png" height="55" width="65" class="pull-left qr-code mr10" style="cursor: pointer;">
+ <p class="color4 fontsize18 pt15" style="cursor: pointer;" id="spancode">
+ <span data-localize="home_lbl_sweepdownloadclient">扫一扫下载客户端</span></p>
+ <div class="area-code text-center">
+ <div class="arrow">
+ </div>
+ <span class="close">×</span>
+ <img id="imgandroidcode" src="/statics/images/QrCodeGenerate.ashx" width="100" height="100">
+ <p class="color4 fontsize2 font-bold mt5">
+ <span data-localize="home_lbl_downloadclient">扫一扫下载客户端</span></p>
+ </div>
+ </span>
+ <span class="dis-tabcell v-mid">
+ <select class="form-input selector" style="width:100px">
+ <option value="zh">简体中文</option>
+ <option value="ha">繁體中文</option>
+ <option value="en">English</option>
+ </select>
+ </span>
+ <script type="text/javascript">
+ //设置cookie
+ function setCookie(cname, cvalue, exdays) {
+ var d = new Date();
+ d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+ var expires = "expires=" + d.toUTCString();
+ document.cookie = cname + "=" + cvalue + "; " + expires;
+ }
+ //获取cookie
+ function getCookie(cname) {
+ var name = cname + "=";
+ var ca = document.cookie.split(';');
+ for (var i = 0; i < ca.length; i++) {
+ var c = ca[i];
+ while (c.charAt(0) == ' ') c = c.substring(1);
+ if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+ }
+ return "";
+ }
+
+ function SearchAndSetLang() {
+ var lang = getCookie("COOKIE_LANGAGES");
+ if (lang != "") {
+ $(".selector").val(lang);
+ }
+ }
+ SearchAndSetLang();
+ $(".selector").change(function () {
+ setCookie("COOKIE_LANGAGES", $(".selector").val(), 30);
+ location.reload();
+ });
+ </script>
+ </div>
+ </div>
+ </div>
+ 
+ <script type="text/javascript">
+ var currentIndex = 0;
+ var maxCount = 0;
+ var tmr = null;
+ $(function () {
+ jQuery(".loginareaitem:eq(0)").show();
+ jQuery(".login30area .loginbottom .changearea .item:eq(0)").attr("class", "itemselect");
+ maxCount = jQuery(".loginareaitem").length;
+ tmr = window.setInterval(clickOper, 6000);
+ jQuery(".loginpanellist").bind("mouseover", function () {
+ window.clearInterval(tmr);
+ }).bind("mouseout", function () {
+ tmr = window.setInterval(clickOper, 6000);
+ });
+ jQuery(".login30area .loginbottom .changearea div:eq(0)").click();
+			$("#qrCode").on("mouseover",function () {
+				// body...
+				$(this).addClass("active");
+			});
+
+			$(".area-code > .close").on("click",function (e) {
+				// body...
+				e.stopPropagation();
+				$("#qrCode").removeClass("active");
+			});
+$("#spancode").on("mouseout",function (e) {					
+				 setTimeout('hiderweima();',2000);
+			});
+							//老APP包
+				
+			//定制包
+			 var downloadurl="http://"+escape("m2.yunxuetang.cn/download.html?c=zhiyuan365");
+						//var url ="http://"+window.location.host+'/appdownload.htm';
+			var codeurl = '/Services/QrCodeGenerate.ashx?codeUrl=' + downloadurl;
+ $("#imgandroidcode").attr("src", codeurl);
+ });
+
+		function hiderweima()
+		{
+		$("#qrCode").removeClass("active");
+		}
+ function clickOper() {
+ currentIndex++;
+ if (currentIndex == maxCount) {
+ currentIndex = 0;
+ }
+ jQuery(".login30area .loginbottom .changearea div:eq(" + currentIndex + ")").click();
+ }
+ function showPanel(index, labelName) {
+ jQuery(".loginareaitem").hide();
+ jQuery(".loginareaitem:eq(" + index + ")").show();
+ jQuery(".login30area .loginbottom .changearea .itemselect").attr("class", "item");
+ jQuery(".login30area .loginbottom .changearea .item:eq(" + index + ")").attr("class", "itemselect");
+ currentIndex = index;
+ if (labelName) {
+ jQuery("#dvLoginBox").attr("class", "el-loginbox " + labelName + "Box");
+ }
+ else {
+ jQuery("#dvLoginBox").attr("class", "el-loginbox");
+ }
+ if ('3' == '1') {
+ jQuery(".login30area .loginbottom .changearea").hide();
+ }
+ }
+ </script>
+ <div class="login30area">
+ <div class="loginrightarea">
+ <div id="dvLoginBox" class="el-loginbox LoginSys2Box">
+ <form method="post" action="/login/" id="form1">
+
+<div class="aspNetHidden">
+<input type="hidden" name="username" id="__LASTFOCUS" value="">
+<input type="hidden" name="username" id="__VIEWSTATE" value="GaH5vR/4ge+hTyPXpcTu+CO1+X/QWkzL22FeJWwDnpNsJCUiDsI9Z5lSMlDZOOIZxM0CRMEtT8Zdbb1V1ryMo/QFYI2kwvZrsZBRh7F0e8pZA8ZdJgBPh4Y7V+TgRQ4NH/fVt9YO55+3BAX/Hk4X8FR4wqG8JDRn+OaaitfdD66Rb4LqbR3Wl9jF4GmcE1ry/5b86S2zX3lttkClglUt7nAWiFMqaxUNEMf2TwVv6yWnysPPdp1gzUMT109N5mghhflgSsBmbg6GFKA4hPqd7iwd7Omq3sau9rMSa6IJEEOyZqN+jfEN/+hi9x0JIe0dbA6Nvlpgv3dWx0SdOoyb2DlJPxda6iLnDDNjr2zT8ielYX64wg87Y2OGPhSp95+PbAGneKjcYNC1WQ8HirG4peZodf1SVYn7uZrCkYr3JjywO518vJ3cTeixsIfnHqrugrKX+wWh3GgKkybZ">
+
+ <label style="color:#FF0000">{{message}} </label>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+ theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+ if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+ theForm.__EVENTTARGET.value = eventTarget;
+ theForm.__EVENTARGUMENT.value = eventArgument;
+ theForm.submit();
+ }
+}
+//]]>
+</script>
+
+
+<script src="/statics/images/WebResource.axd" type="text/javascript"></script>
+
+
+<script src="/statics/images/WebResource(1).axd" type="text/javascript"></script>
+ <script type="text/javascript" src="/statics/js/jquery-1.9.1.js"></script><script type="text/javascript" src="/statics/js/jquery-ui-1.9.2.custom.min.js"></script><script type="text/javascript" src="/statics/js/jquery.validate_new.js"></script><script type="text/javascript" src="/statics/js/jquery.mCustomScrollbar.concat.min(1).js"></script><script type="text/javascript" src="/statics/js/common.js"></script><script type="text/javascript" src="/statics/js/jquery.i18n.properties-1.0.9.js"></script><script type="text/javascript" src="/statics/js/main.js"></script><script type="text/javascript">currentSkinName="elearning30";</script><link href="/statics/css/output.min.css" type="text/css" rel="stylesheet"><link href="/statics/css/ui.core.css" type="text/css" rel="stylesheet"> <link href="/statics/js/jquery.mCustomScrollbar(1).css" type="text/css" rel="stylesheet"> 
+ <link type="text/css" rel="Stylesheet" href="/statics/css/login(1).css">
+ <script type="text/javascript" src="/statics/js/registerlogin.js"></script>
+ <script src="/statics/js/pushstream.js"></script>
+ <script language="javascript" for="document" event="onkeydown">
+ if(event.srcElement.type=='text'&&event.keyCode==13)
+ {
+ event.keyCode=9;
+ }
+ </script>
+ <script type="text/javascript">
+ function checkLogin() {
+ var txt = document.getElementById("txtUserName");
+ var txtPwd = document.getElementById("txtPassword");
+ var lbl = document.getElementById("lblErrMsg");
+ if (txt.value == "" || txt.value == jQuery.i18n.map["home_tip_emailnumber"]) {
+ lbl.innerHTML = jQuery.i18n.map["home_lbl_enterusername"];
+ txt.focus();
+ txt.value = "";
+ txt.select();
+ return false;
+ }
+ else {
+ lbl.innerHTML = "";
+ }
+ if (txtPwd.value == "") {
+ lbl.innerHTML = jQuery.i18n.map["home_lbl_enterpassword"];
+ txtPwd.focus();
+ return false;
+ }
+ else {
+ lbl.innerHTML = "";
+ }
+ var divValidate = document.getElementById("divValidate");
+ var txtValidateCode = document.getElementById("txtValidateCode");
+ if (divValidate.style.display != "none" && txtValidateCode.value == "") {
+ lbl.innerHTML = jQuery.i18n.map["home_lbl_enterverificationcode"];
+ txtValidateCode.focus();
+ return false;
+ }
+ else {
+ lbl.innerHTML = "";
+ }
+ return true;
+ }
+ function addFavorite(sURL, sTitle) {
+ try {
+ window.external.addFavorite(sURL, sTitle);
+ }
+ catch (e) {
+ try {
+ window.sidebar.addPanel(sTitle, sURL, "");
+ }
+ catch (e) {
+ alert(jQuery.i18n.map["home_lbl_addcollectionfail"]);
+ }
+ }
+ }
+ function checkLogin2() {
+ // 表示用户名登录 
+ var txt = document.getElementById("txtUserName2");
+ var txtPwd = document.getElementById("txtPassword2");
+ var lbl = document.getElementById("loginErr");
+ if (txt.value == "" || txt.value == jQuery.i18n.map["home_tip_emailnumber"]) {
+ lbl.innerHTML = jQuery.i18n.map["home_lbl_enterusername"];
+ txt.focus();
+ txt.value = "";
+ txt.select();
+ return false;
+ }
+ else {
+ lbl.innerHTML = "";
+ }
+ if (txtPwd.value == "") {
+ lbl.innerHTML = jQuery.i18n.map["home_lbl_enterpassword"];
+ txtPwd.focus();
+ return false;
+ }
+ else {
+ lbl.innerHTML = "";
+ }
+ var divValidate = document.getElementById("dvValidate");
+ var txtValidateCode = document.getElementById("txtValidateCode2");
+ if (divValidate.style.display != "none" && txtValidateCode.value == "") {
+ lbl.innerHTML = jQuery.i18n.map["home_lbl_enterverificationcode"];
+ txtValidateCode.focus();
+ return false;
+ }
+ else {
+ lbl.innerHTML = "";
+ }
+ return true;
+ }
+
+ //微信登录
+ function wx_Login() {
+ var st = "False";
+ if (st == "False") {
+ $("#NoWeiXin").show();
+ } else {
+ $('#btnWxLogin').click();
+ }
+ }
+
+ function closeWx() {
+ $("#NoWeiXin").hide();
+ }
+
+ </script>
+ 
+ <!-- 密码登录 -->
+ <div id="loginBox" class="hiddenelement" style="display: block;">
+ 
+ <div id="methodCode" class="el-method-code" onclick="BackToQrLogin();">
+ </div>
+ 
+ <div id="loginTitle" class="font-bold font-size-16" data-localize="home_lbl_pwdlogin">密码登录</div>
+ <div id="loginErr" class="el-loginbox-err hiddenelement">
+ 
+ </div>
+ <div class="el-login-row">
+ <input name="username" type="text" maxlength="50" id="txtUserName2" class="el-login-input el-login-account" data-localizetitle="home_tip_emailnumber" data-localize="home_tip_emailnumber" placeholder="账号/邮箱/手机号" title="账号/邮箱/手机号">
+ <input name="password" type="password" id="txtPassword2" class="el-login-input el-login-pwd mt20" onblur="changeonblur(&#39;Word&#39;);" onfocus="changeonfocus(&#39;Word&#39;);">
+ <div id="dvValidate" class="el-code-area mt20 hiddenelement" style="display: none;">
+ <div class="pull-left">
+ <input name="txtValidateCode2" type="text" maxlength="4" id="txtValidateCode2" class="el-login-input el-login-verification" onblur="changeonblur(&#39;reg&#39;);">
+ </div>
+ <div class="pull-right">
+ <img id="imgCheckCode2" width="100px" height="40px" onclick="RefreshCheckCodeImg2(false);">
+ </div>
+ </div>
+ <input type="submit" name="btnLogin2" value="登录" onclick="return checkPwdLogin();" id="btnLogin2" class="btnlogin el-btn-login" data-localize="home_btn_loginin">
+ </div>
+ 
+ <div class="el-login-text text-right">
+ <a id="forgetPwd" href="/server" class="color4" data-localize="home_lbl_forgetpassword2">忘记密码</a><a id="smsLogin" href="/register" class="color4 ml15" >注册</a>
+ </div>
+ <div class="row clearfix" style="padding-bottom: 5px; display: none">
+ <div class="left">
+ <div id="divAutoLogin2" class="autologin">
+ <span class="checkbox"><input id="chkAutoLogin2" type="checkbox" name="chkAutoLogin2"></span>&nbsp;<label for="chkAutoLogin2"><span data-localize="home_lbl_autologin">自动登录</span></label></div>
+ </div>
+ <div class="right">
+ <a target="_self" href="http://www.wkzfxuexi.com/common/forgetpassword.htm" class="forgetpwd" data-localize="home_lbl_forgetpassword">忘记密码?</a>
+ </div>
+ </div>
+ 
+ <div id="dvMobileLoginPanel" style="display: none;" class="body">
+ <div class="row">
+ <input name="txtUserMobile" type="text" maxlength="20" id="txtUserMobile" class="phone-number" data-localizetitle="home_tip_phonenumber" data-localize="home_tip_phonenumber" placeholder="手机号码" title="手机号码">
+ </div>
+ <div class="row clearfix">
+ <input name="txtLoginCode" type="text" maxlength="6" id="txtLoginCode" class="code-input" data-localizetitle="home_lbl_dynamicnumber" data-localize="home_lbl_dynamicnumber" placeholder="动态码" title="动态码">
+ <input id="btnSendCode" type="button" class="btn-getcode" data-localize="home_btn_getdynamiccode" onclick="getLoginCode();" value="获取动态码">
+ </div>
+ <div class="row">
+ <input type="submit" name="btnDyncLogin" value="登录" onclick="return checkLogin2();" id="btnDyncLogin" class="btnlogin" data-localize="home_btn_loginin">
+ </div>
+ <input type="submit" name="btnWxLogin" value="" id="btnWxLogin" class="hiddenelement">
+ </div>
+ 
+ </div>
+ 
+
+
+ <script type="text/javascript">
+ /* ------------ 密码登陆 -------------*/
+ function checkPwdLogin() {
+ // 表示用户名登录 
+ var LoginCustom = 'True';
+ var $UserName = $("#txtUserName2");
+ if (LoginCustom.toLowerCase() == "false") {
+ $UserName = $("#txtUserNameCustom");
+ }
+ var $Pwd = $("#txtPassword2");
+ var $ErrMsg = $("#loginErr");
+ if ($UserName.val() == "" || $UserName.val() == jQuery.i18n.map["home_tip_emailnumber"]) {
+ $ErrMsg.html(jQuery.i18n.map["home_lbl_enterusername"]).show();
+ $("#loginTitle").hide();
+ $UserName.focus().val("").select();
+ return false;
+ }
+ if ($Pwd.val() == "") {
+ $ErrMsg.html(jQuery.i18n.map["home_lbl_enterpassword"]).show();
+ $("#loginTitle").hide();
+ $Pwd.focus();
+ return false;
+ }
+
+ var divValidate = document.getElementById("dvValidate");
+ var $dCode = $("#txtValidateCode2");
+ if (divValidate.style.display != "none" && $dCode.val() == "") {
+ $ErrMsg.html(jQuery.i18n.map["home_lbl_enterverificationcode"]).show();
+ $("#loginTitle").hide();
+ $dCode.focus();
+ return false;
+ }
+
+ setCookie("loginType", "Pwd");
+ return true;
+ }
+
+ /* -------------后台推送 --------------*/
+ var pushstream;
+ var qrOverdueInt;
+ function listenQRLogin(url, code) {
+ if (pushstream && pushstream.disconnect) {
+ pushstream.disconnect();
+ }
+ var regExp = new RegExp("^http:\/\/([a-z0-9\.]+):([0-9]+)\/", "g");
+ var m = url.match(regExp);
+ var domain = RegExp.$1;
+ var port = RegExp.$2;
+
+ //接收后台服务推送消息
+ pushstream = new PushStream({
+ timeout: 20000,
+ modes: 'longpolling',
+ host: domain,
+ port: port,
+ useSSL: false,
+ useJSONP: false
+ });
+ pushstream.onmessage = messageReceived;
+
+ pushstream.addChannel(code);
+ pushstream.connect();
+
+ function messageReceived(text) {
+ if (text && text != "") {
+ debugger;
+ if (text && text == "success") {
+ $("#scanSuccBox").show();
+ $("#qrCodeBox,#loginBox,#smsBox").hide();
+ if (qrOverdueInt) {
+ clearTimeout(qrOverdueInt);
+ }
+ } else if (text.indexOf('|') > 0) {
+ setCookie("loginType", "QRCode");
+ var array = text.split('|');
+ var id = array[0];
+ var token = array[1];
+ var fromurl = getQueryString("fromurl");
+ if (fromurl && fromurl != "" && fromurl != null) {
+ var url = decodeURIComponent(fromurl);
+ } else {
+ url = "homepage.htm";
+ }
+ var pageUrl = url + "?starf=1&uid=" + id + "&t=" + token;
+ location.href = pageUrl;
+ }
+ }
+ };
+ }
+
+ //onclick 区域 +++++++++++++++++++++++++++
+
+ function refreshQRCode(fn) {
+ $.ajax({
+ url: "/Services/CommonService.svc/GetQRCode",
+ type: "POST",
+ success: function (result) {
+ if (result && result != "") {
+ var data = eval("(" + result + ")");
+ $("#qrImg").attr("src", "https://api-qidatestin.yunxuetang.cn/v1/" + data.QRCode_Url+"&size=150");
+ qrCodeOverdue();
+ $("#qrImg").load(function () {
+ listenQRLogin(data.Fetch_Token_Url, data.RCode);
+ $("#dvRefreshQRCode").hide();
+ if (fn) {
+ fn();
+ }
+ });
+ }
+ },
+ error:function (XMLHttpRequest, textStatus, errorThrown){ 
+ console.log("error");
+ }
+ });
+ }
+
+ //密码登陆
+ function SetPwdLogin() {
+ $("#qrCodeBox").hide();
+ $("#smsBox").hide();
+ $("#loginBox").show();
+ $("#scanSuccBox").hide();
+ }
+ //动态码登陆
+ function SetDCodeLogin() {
+ $("#imgValidate").attr("src", "/Services/DrawImage.ashx?t=vc&f=" + encodeURIComponent("宋体") + "&v=" + randomChar(12));
+ $("#qrCodeBox").hide();
+ $("#smsBox").show();
+ $("#loginBox").hide();
+ }
+ //返回二维码登录 
+ function BackToQrLogin() {
+ refreshQRCode(function () {
+ $("#qrCodeBox").show()
+ $("#loginBox").hide();
+ $("#smsBox").hide();
+ $("#scanSuccBox").hide();
+ });
+ }
+
+ //发送动态码
+ function SendDCode() {
+ $("#smsTitle").html(jQuery.i18n.map["home_lbl_phonedynamiccodelogin"]).show();
+ $("#smsErr").hide();
+ getLoginCode();
+ }
+
+ //onclick 区域End +++++++++++++++++++++++++++
+
+ //login 
+ function loginByCode() {
+ //用户名
+ var $phone = $("#phoneNumber");
+ //验证码
+ var $dCode = $("#dCode");
+ var $divErr = $("#smsErr");
+ if ($phone.val() == "" || $phone.value == jQuery.i18n.map["home_tip_phonenumber"]) {
+ $divErr.html(jQuery.i18n.map["home_lbl_enterphonenumber"]).show();
+ $("#smsTitle").hide();
+ $phone.value = "";
+ $phone.focus().select();
+ return false;
+ }
+ else if ($dCode.val() == "" || $dCode.val() == jQuery.i18n.map["home_lbl_dynamicnumber"]) {
+ $divErr.html(jQuery.i18n.map["home_lbl_entermobiledynamiccode"]).show();
+ $("#smsTitle").hide();
+ $dCode.focus();
+ return false;
+ }
+ else {
+ $("#smsTitle").html(jQuery.i18n.map["home_lbl_phonedynamiccodelogin"]);
+ $divErr.html("").hide();
+ }
+
+ $('#btnSmsLogin').val($.i18n.map["home_lbl_loggingin"]);
+ $('#btnSmsLogin').attr("disabled", true);
+
+ var menuGroupType = "StudyMenuGroup";
+ var arr = '{"mobile":"' + $phone.val() + '","code":"' + $dCode.val() + '","menuGroupType":"' + menuGroupType + '"}';
+ $.ajax({
+ type: "POST",
+ contentType: "text/json",
+ url: "/Services/CommonService.svc/ValidateCodeLogin",
+ data: arr,
+ dataType: 'json',
+ cache: false,
+ success: function (obj) {
+ var jsonObj = "";
+ if (obj) {
+ jsonObj = JSON.parse(obj);
+ if (obj.length > 0) {
+ //错误提示
+ var msg = jsonObj.msg;
+ //返回url
+ var url = jsonObj.fromUrl;
+ if (url && url != "") {
+ setCookie("loginType", "SMS");
+ location.href = url;
+ }
+ else {
+ $divErr.html(msg).show();
+ $("#smsTitle").hide();
+ $('#btnSmsLogin').val(jQuery.i18n.map["home_btn_loginin"]);
+ $('#btnSmsLogin').attr("disabled", false);
+ }
+ }
+ }
+ }
+ });
+ }
+
+ // 动态码登录部分
+ var tmrSendCode = null;
+ var index = 59;
+ // 获取动态码
+ function getLoginCode() {
+ var mobile = $("#phoneNumber").val();
+ var $divErr = $("#smsErr");
+ var reg = /^1\d{10}$/;
+ if (!reg.test(mobile)) {
+ $divErr.html(jQuery.i18n.map["home_lbl_phonenumberformatincorrect"]).show();
+ $("#smsTitle").hide();
+ return false;
+ }
+ $("#btnSendDCode").attr("disabled", true);
+ $("#btnSendDCode").css("background-color", "gray");
+ $("#btnSendDCode").css("cursor", "default");
+ var arr = '{"mobile":"' + escape(mobile) + '","vcode":"' + $("#validCode").val() + '"}';
+ jQuery.ajax({
+ type: "POST",
+ contentType: "text/json",
+ url: "/Services/CommonService.svc/SendSMSValidateCode",
+ data: arr,
+ dataType: 'json',
+ cache: false,
+ success: function (obj) {
+ if (obj) {
+ if (obj.indexOf("code|") == 0) {
+ $divErr.html("").hide();
+ // $("#txtLoginCode").val(obj.replace("code|", ""));
+ showSuccessMsg(jQuery.i18n.map["home_msg_dynamiccodesent"]);
+ index = 60;
+ window.clearInterval(tmrSendCode);
+ $("#btnSendDCode").attr("disabled", true);
+ $("#btnSendDCode").css("background-color", "gray");
+ $("#btnSendDCode").css("cursor", "point");
+ tmrSendCode = window.setInterval(showSendTime, 1000);
+ }
+ else {
+ refreshCode();
+ $divErr.html(obj).show();
+ $("#smsTitle").hide();
+ $("#btnSendDCode").attr("disabled", false);
+ $("#btnSendDCode").removeAttr("style");
+ //$("#btnSendCode").css("cursor", "default");
+ }
+ }
+ else {
+ $divErr.html("").hide();
+ showSuccessMsg(jQuery.i18n.map["home_msg_dynamiccodesent"]);
+ index = 60;
+ window.clearInterval(tmrSendCode);
+ $("#btnSendDCode").attr("disabled", true);
+ $("#btnSendDCode").css("background-color", "gray");
+ $("#btnSendDCode").css("cursor", "point");
+ tmrSendCode = window.setInterval(showSendTime, 1000);
+ }
+ }
+ });
+ }
+
+ function showSendTime() {
+ index--;
+ if (index == 0) {
+ $("#btnSendDCode").val(jQuery.i18n.map["home_lbl_getdynamiccode"]);
+ $("#btnSendDCode").attr("disabled", false);
+ $("#btnSendDCode").css("background-color", "gray");
+ $("#btnSendDCode").css("cursor", "point");
+ $("#btnSendDCode").removeAttr("style");
+ window.clearInterval(tmrSendCode);
+ return;
+ }
+ $("#btnSendDCode").val(jQuery.i18n.prop('home_lbl_reacquire', index));
+ }
+
+ function refreshCode() {
+ $("#imgValidate").attr("src", "/Services/DrawImage.ashx?t=vc&f=" + encodeURIComponent("宋体") + "&v=" + randomChar(12));
+ }
+
+ //二维码过期 
+ function qrCodeOverdue() {
+ if (qrOverdueInt) {
+ clearTimeout(qrOverdueInt);
+ }
+ qrOverdueInt = setTimeout(function () {
+ if (pushstream && pushstream.disconnect) {
+ pushstream.disconnect();
+ }
+ $("#dvRefreshQRCode").show();
+ }, 60 * 1000);
+ }
+
+ $(function () {
+ //上次登录方式
+ var loginType = getCookie('loginType');
+
+ if (loginType == "SMS") {
+ $("#imgValidate").attr("src", "/Services/DrawImage.ashx?t=vc&f=" + encodeURIComponent("宋体") + "&v=" + randomChar(12));
+ $("#smsBox").show();
+ $("#loginBox,#qrCodeBox").hide();
+ } else if (loginType == "Pwd" || "72bb6a95-b80a-47d4-9eb8-7f0c0b08d32f" == "d52b48da-7d40-41f0-9334-aff22828beec") {
+ $("#loginBox").show();
+ $("#smsBox,#qrCodeBox").hide();
+ } else {
+ refreshQRCode(function () {
+ $("#qrCodeBox").show();
+ $("#loginBox,#smsBox").hide();
+ });
+ qrCodeOverdue();
+ }
+
+ //二位码登陆/密码登陆
+ // $("#methodCode,#methodCodeD").click(function () {
+ // refreshQRCode(function () {
+ // $("#qrCodeBox").show()
+ // $("#loginBox").hide();
+ // $("#smsBox").hide();
+ // });
+ // });
+ //密码登陆
+ // $("#methodDesktop,#methodDesktopD").click(function () {
+ // $("#qrCodeBox").hide();
+ // $("#smsBox").hide();
+ // $("#loginBox").show();
+ // $("#scanSuccBox").hide();
+ // });
+
+ //返回二维码登录
+ // $("#backToQRCode").click(function () {
+ // refreshQRCode(function () {
+ // $("#qrCodeBox").show()
+ // $("#loginBox").hide();
+ // $("#smsBox").hide();
+ // $("#scanSuccBox").hide();
+ // });
+ // });
+
+ // $("#imgValidate").click(function () {
+ // $(this).attr("src", "/Services/DrawImage.ashx?t=vc&f=" + encodeURIComponent("宋体") + "&v=" + randomChar(12));
+ // })
+
+ //动态码登陆 
+ // $("#smsLogin,#qrSmsLogin").click(function () {
+ // $("#imgValidate").attr("src", "/Services/DrawImage.ashx?t=vc&f=" + encodeURIComponent("宋体") + "&v=" + randomChar(12));
+ // $("#qrCodeBox").hide();
+ // $("#smsBox").show();
+ // $("#loginBox").hide();
+ // });
+
+ //密码登陆
+ // $("#pwdLogin,#qrPwdLogin").click(function () {
+ // $("#qrCodeBox").hide();
+ // $("#smsBox").hide();
+ // $("#loginBox").show();
+ // });
+
+ //刷新验证码
+ // $("#imgCheckCode2").click(function () {
+ // RefreshCheckCodeImg2(false);
+ // });
+
+
+ //二维码过期 
+ // function qrCodeOverdue() {
+ // if (qrOverdueInt) {
+ // clearTimeout(qrOverdueInt);
+ // }
+ // qrOverdueInt = setTimeout(function () {
+ // if (pushstream && pushstream.disconnect) {
+ // pushstream.disconnect();
+ // }
+ // $("#dvRefreshQRCode").show();
+ // }, 60 * 1000);
+ // }
+ //刷新二维码
+ // $("#btnRefreshQRCode").click(function () {
+ // refreshQRCode();
+ // }); 
+
+
+
+ /* ============动态码登录Begin=============*/
+ // $("#btnSmsLogin").click(function () {
+ // loginByCode();
+ // });
+
+ // $("#btnSendDCode").click(function () {
+ // $("#smsTitle").html(jQuery.i18n.map["home_lbl_phonedynamiccodelogin"]).show();
+ // $("#smsErr").hide();
+ // getLoginCode();
+ // });
+
+
+ /* ============动态码登录End============= */
+ });
+ </script>
+ 
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="C2EE9ABB">
+	<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+	<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="S6sUULlAZVBdEpInt9dqP/QH4oP4gWWB7ELX5HtiYqw1NKOPG0fOal3cED53z7EO27OlEUtgR43HGzhFvGdIh9l3lKTJYDhJW9+jfmrlUa/1NyildWR1u4OdGM19qtKczyteEfLFp2XNskylK0PTdec4sOrcEt5s6XRE4XKhhCWtl6JdPy9wDLnLhXgyOa/0L7/F3rGdTGsEJSME4fIuxs1IPZlBoEAYA8v16szdvVE+7r8prhWHrZGrli0BDRpba5mkJTeG4KVkmAf0M5qw8slJViijQmqdSNCm2twEEId3xIsu9VtsnMdcAW+Nk2FroB9R98KQgBkviulxAzlfCieDi9KlUBhi88jx69xM5wokknftnIM5X65fU6FaWFv33/g9k2bixnzRnWuO">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+$('#dvValidate').hide();//]]>
+</script>
+<script language="javascript">try {loadProperties('zh'); }catch (e) {}</script>
+<script type="text/javascript">
+//<![CDATA[
+WebForm_AutoFocus('txtUserName2');//]]>
+</script>
+<script language="javascript" for="document" event="onkeydown">
+ if(event.srcElement.type=='text'&&event.keyCode==13)
+ {
+ event.keyCode=9;
+ }
+ </script></form>
+ </div>
+ </div>
+ <div class="loginpanellist">
+ 
+ <div id="LoginSys0" class="loginareaitem LoginSys0" style="display: none;">
+ <div class="loginitem">
+ 
+ 
+ 
+ 
+ 
+<div class="body">
+ <div class="head clearfix" style="padding-top: 28px;">
+ <div class="floatleft">
+ <span class="big" data-localize="sys-lbl-loginpage1">您</span><span data-localize="sys-lbl-loginpage2">即将成为今天第</span></div>
+ <div class="order">
+ <div class="numl">
+ &nbsp;</div>
+ <div class="numc">
+ 48</div>
+ <div class="numr">
+ &nbsp;</div>
+ </div>
+ <div class="headlast">
+ <span data-localize="sys-lbl-loginpage3">位登录者，赶快抢位吧</span></div>
+ </div>
+ <div class="box1 clearfix" style="min-height: 175px;">
+ <div class="title">
+ <span data-localize="sys-lbl-loginpage6">学习达人月榜单</span></div>
+ <div style="margin-left: -11px;">
+ <div id="dvL1" class="toleft hiddenelement">
+ </div>
+ <div class="list clearfix">
+ <div id="dvListLarge" class="listlarge" style="width: 100000px;">
+ <div class="item">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/js/91.png">
+ </div>
+ <div class="itemname" title="付轻骑">
+ 付轻骑</div>
+ </div>
+ <div class="item">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/78.png">
+ </div>
+ <div class="itemname" title="梁峰">
+ 梁峰</div>
+ </div>
+ <div class="item">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/119.png">
+ </div>
+ <div class="itemname" title="汪小群">
+ 汪小群</div>
+ </div>
+ <div class="item">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/61.png">
+ </div>
+ <div class="itemname" title="王海峰">
+ 王海峰</div>
+ </div>
+ <div class="item">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/96.png">
+ </div>
+ <div class="itemname" title="朱俊武">
+ 朱俊武</div>
+ </div>
+ <div class="item">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/108.png">
+ </div>
+ <div class="itemname" title="王英杰">
+ 王英杰</div>
+ </div>
+ <div class="item">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/94.png">
+ </div>
+ <div class="itemname" title="杨万强">
+ 杨万强</div>
+ </div>
+ </div>
+ </div>
+ <div id="dvR1" class="toright hiddenelement">
+ </div>
+ </div>
+ </div>
+ <div class="box1">
+ <div class="title clearfix">
+ <span data-localize="sys-lbl-loginpage8">今日登录先锋</span></div>
+ <div class="list clearfix" style="width: 800px; padding-left: 20px; height: 85px;">
+ <div class="item1">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/93.png">
+ </div>
+ <div class="itemname" title="冯恩娟">
+ 冯恩娟</div>
+ </div>
+ <div class="item1">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/87b0b1fa53444d70b582d38e281e1f86.jpg">
+ </div>
+ <div class="itemname" title="蔡滨韩">
+ 蔡滨韩</div>
+ </div>
+ <div class="item1">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/63.png">
+ </div>
+ <div class="itemname" title="许晓明">
+ 许晓明</div>
+ </div>
+ <div class="item1">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/105.png">
+ </div>
+ <div class="itemname" title="徐帅">
+ 徐帅</div>
+ </div>
+ <div class="item1">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/104.png">
+ </div>
+ <div class="itemname" title="丁波丽">
+ 丁波丽</div>
+ </div>
+ <div class="item1">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/cf30d9f1434e4ac39d2be03f88405417.jpeg">
+ </div>
+ <div class="itemname" title="万燕">
+ 万燕</div>
+ </div>
+ <div class="item1">
+ <div class="itembox">
+ <div class="headbg">
+ </div>
+ <img src="/statics/images/6248035fed0e4c72be7ec8da371018e4.jpg">
+ </div>
+ <div class="itemname" title="堵卫东">
+ 堵卫东</div>
+ </div>
+ </div>
+ </div>
+</div>
+<script type="text/javascript">
+ $(function () {
+ loadPropertiesForAsync("LoginSys0");
+ });
+</script>
+ </div>
+ </div>
+ <div id="LoginSys2" class="loginareaitem LoginSys2" style="display: block;">
+ <div class="loginitem">
+ 
+<div style="background:url(&#39;/SSL/css/images/login/bg1.jpg&#39;) no-repeat center top; height:459px;">
+ <div style="width: 1200px; height: 459px; margin: 0 auto;">
+ <div style="width: 630px; float: left;">
+ <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="630" height="400">
+ <param name="movie" value="/SSL/css/images/login/flash1.swf">
+ <param name="quality" value="high">
+ <param name="wmode" value="transparent">
+ <param name="swfversion" value="8.0.35.0">
+ <!-- 此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 -->
+ <param name="expressinstall" value="/SSL/css/images/login/Scripts/expressInstall.swf">
+ <!-- 下一个对象标签用于非 IE 浏览器。所以使用 IECC 将其从 IE 隐藏。 -->
+ <!--[if !IE]>-->
+ <object type="application/x-shockwave-flash" data="http://www.wkzfxuexi.com/SSL/css/images/login/flash1.swf" width="630" height="400">
+ <!--<![endif]-->
+ <param name="quality" value="high">
+ <param name="wmode" value="transparent">
+ <param name="swfversion" value="8.0.35.0">
+ <param name="expressinstall" value="/SSL/css/images/login/Scripts/expressInstall.swf">
+ <!--[if !IE]>-->
+ </object>
+ <!--<![endif]-->
+ </object>
+ </div>
+ </div>
+</div>
+ </div>
+ </div>
+ <div id="dvUser1" class="loginareaitem userCustomLogin" style="display: none;">
+ <div class="loginitem">
+ <img class="imglogin" src="/statics/images/sysdefault03.png">
+ </div>
+ </div>
+ 
+ <div class="loginbottom">
+ <div class="changearea">
+ <div class="item" onclick="showPanel(0,&#39;LoginSys0&#39;)">1</div><div class="itemselect" onclick="showPanel(1,&#39;LoginSys2&#39;)">2</div><div class="item" onclick="showPanel(2);">3</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="pagefooter" id="divPageFooter">
+						 
+ <style type="text/css">
+div.pageheader30 {height: 60px;background:white;}
+div.pageheader30 .headerbg {height: 60px;background:white;}
+div.pageheader30 .headerbg .header {height: 60px;padding-top:8px;}
+div.header30toppadding {height: 60px;}
+div.navbar_default ul li a {color:black;height:50px;}
+div.navbar_default ul li a:hover {color: black;border-bottom:#ff5a5f 2px solid;}
+div.c_navmorediv1.clearfix a {color:red;} 
+div.navbar_default ul li.more {width:75px;}
+div.navbar_default ul li.morehover {width:75px;}
+div.pageheader30 .headerbg .header .logo {padding-top: 0px;width: 178px;height:52px;
+/*background:url('http://staticbd.yunxuetang.cn/yxt/SystemFiles/Themes/Classic/zhiyuan365/css/images/logo.png') no-repeat ;*/}
+div.pageheader30 .headerbg .header .logo img{
+height:44px;
+}
+div.navbar_default ul li.mouseover {background:url();border-bottom:#ff5a5f 2px solid;height:50px;}
+div.navbar_default ul li.mouseover a {color:black;}
+div.pageheader30 .headerbg .header .account .accountblick {background: url('http://staticbd.yunxuetang.cn/yxt/SystemFiles/Themes/Classic/zhiyuan365/css/images/down.png') no-repeat 65px 18px;}
+div.pageheader30 .headerbg .header .account {color:black;}
+div.pageheader30 div.navbar_default ul li.more a.linkmore {background: url();font-size:15px;}
+div.pageheader30 .headerbg .header .stayarea .info .iconnotic_active {
+background: url('http://staticbd.yunxuetang.cn/yxt/SystemFiles/Themes/Classic/zhiyuan365/css/images/icon1.png') no-repeat 0px 0px;padding: 22px 0px 0px 50px;}
+div.pageheader30 .headerbg .header .stayarea .info {width:42px;line-height:62px;}
+div.pageheader30 .headerbg .header .stayarea {width:62px;box-sizing:initial;}
+div.pageheader30 .headerbg .header .stayarea .info .iconnotic_new {background: url('http://staticbd.yunxuetang.cn/yxt/SystemFiles/Themes/Classic/zhiyuan365/css/images/icon1.png') no-repeat 0px 4px;padding:22px 15px 0px 25px;}
+div.pageheader30 .headerbg .header .msgarea {width:95px;box-sizing: initial;}
+div.pageheader30 .headerbg .header .msgarea .info {width:42px;line-height:26px;}
+div.pageheader30 .headerbg .header .msgarea .info .iconnotic_new {
+background: url('http://staticbd.yunxuetang.cn/yxt/SystemFiles/Themes/Classic/zhiyuan365/css/images/icon2.png') no-repeat 0px -4px;padding: 0px 0px 18px 50px;}
+div.pageheader30 .headerbg .header .msgarea .info .iconnotic_active {
+background: url('http://staticbd.yunxuetang.cn/yxt/SystemFiles/Themes/Classic/zhiyuan365/css/images/icon2.png') no-repeat 0px -5px;padding: 0px 0px 24px 50px;
+position:relative; 
+}
+div.pageheader30 .headerbg .header .msgareahover {width:95px;}
+div.pageheader30 .headerbg .header .msgareahover .info {width:42px;line-height:62px;}
+div.pageheader30 .headerbg .header .msgareahover .info .iconnotic_new {background: url('http://staticbd.yunxuetang.cn/yxt/SystemFiles/Themes/Classic/zhiyuan365/css/images/icon2.png') no-repeat scroll 0px 0px transparent;padding: 25px 0px 0px 50px;}
+div.dvnumberbg{margin-top:0px;}
+div.dvnumberbg span.number1 {background: url();background-color:#cb3f3e;padding-left:3px;min-width:5px;}
+div.pageheader30 .headerbg .header .msgarea div.dvnumberbg span.number {background: url();background-color:#cb3f3e;min-width:5px;padding-left:4px;}
+div.pageheader30 .headerbg .header .msgareahover div.dvnumberbg span.number {background: url();background-color:#cb3f3e;min-width:5px;padding-left:4px;margin-top:-3px;}
+div.pageheader30 .headerbg .header .msgareahover{margin-top:0px;}
+.infocenter {background: url("http://staticbd.yunxuetang.cn/yxt/SystemFiles/Themes/Classic/zhiyuan365/css/images/bg1.png") right 62px no-repeat;}
+.infocenter div {width: 458px;}
+div.pageheader30 .headerbg .header .account {font-size:15px;}
+div.pageheader30 div.navbar_default ul li.morehover a.linkmore {font-size:15px;}
+div.pageheader30 .headerbg .header .accounthover {font-size:15px;}
+div.navbar_default ul li.more .block {background:url('http://staticbd.yunxuetang.cn/yxt/SystemFiles/Themes/Classic/zhiyuan365/css/images/down.png') no-repeat 55px 18px;}
+div.navbar_default ul li.morehover {margin-top: -1px;}
+div.navbar_default ul li {padding-top:1px;}
+div.pagefooter {background-color:#737373;}
+.logout{
+box-sizing:content-box;
+}
+</style>
+<script type="text/javascript">
+ $(document).ready(function () {
+ $("div.pageheader30 .headerbg .header .logo img").css("height", "44px");
+ $("#ShowWaitCount").hide();
+ $(".searcharea").css("display", "none");
+ //$(".logo").html("");
+ $("div").find(".c_navmorediv1.clearfix").each(function () {
+ $(this).find("a").css("border-bottom", "0px");
+ });
+ });
+</script>
+<div style="margin: 10px auto; text-align: center; color: #666666; line-height: 24px;">
+ <div style="color: white;">
+ © 2013 All Rights Reserved&nbsp;&nbsp;云学堂 版权所有&nbsp;&nbsp;苏ICP备10023489号-1
+ </div>
+ <div style="color: white;">
+ 云学堂&nbsp;&nbsp;提供技术 &nbsp;&nbsp;服务协议 &nbsp;&nbsp;帮助中心 &nbsp;&nbsp;400-928-6900
+ </div>
+</div>
+ </div>
+
+</body></html>
