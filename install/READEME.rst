@@ -1,10 +1,14 @@
-1、
+一、安装系统依赖包
  yum install libxslt-devel  install libxml2   install libxslt  openssl-devel -y \
 gcc gcc-c++ autoconf gd libjpeg libjpeg-devel libpng libpng-devel freetype \
 freetype-devel libxml2 libxml2-devel \
 bzip2 bzip2-devel ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel krb5-libs \
 krb5-devel libidn libidn-devel openssl openssl-devel openldap openldap-devel nss_ldap \
 openldap-clients openldap-servers wget expect bc patch ntp libtool vim-enhanced file sysstat sqlite-devel
+
+二、下载cloudcollege
+cd /var/www/
+git clone https://github.com/wangyc666666/CloudCollege.git
 
 
 wget http://www.rarlab.com/rar/rarlinux-x64-5.3.0.tar.gz
@@ -19,8 +23,9 @@ tar -xvf Python-3.4.tar.bz2
 
  vim /etc/ld.so.conf.d/python3.conf
 /usr/local/python3.4/lib/
-
 ldconfig
+
+三、部署uwsgi 与nginx
 pip3 install uwsgi
 
 ln -s /usr/local/python3.4/bin/uwsgi /usr/bin/uwsgi3
@@ -82,6 +87,17 @@ server {
 
 
 }
+
+
+四、拷贝python依赖包
+zip x ./install/site-packages.zip /usr/local/python3.4/lib/python3.4/
+
+五、安装mysql
+
+成功部署完成mysql，建立CloudCollege账户密码
+
+启动服务
+python /var/www/CloudCollege/bin/apache_restart.py
 
 seo 优化
 https://github.com/romansalin/django-seo2.git
