@@ -145,7 +145,7 @@ DEFAULT_FORM_EMAIL = '674702627@qq.com'
 EMAIL_HOST = 'smtp.qq.com'                   #SMTP地址
 EMAIL_PORT = 587                             #SMTP端口
 EMAIL_HOST_USER = '674702627@qq.com'       #我自己的邮箱
-EMAIL_HOST_PASSWORD = 'uvtqwnvkvkyvbbef'                  #我的邮箱密码
+EMAIL_HOST_PASSWORD = 'uvtqwnxxxvbbxxx'                  #我的邮箱密码
 EMAIL_SUBJECT_PREFIX = u'[CoorCar网]'            #为邮件Subject-line前缀,默认是'[django]'
 EMAIL_USE_TLS = True                             #与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
 #管理员站点
