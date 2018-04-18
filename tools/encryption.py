@@ -59,12 +59,12 @@ class AES_OBJECT(object):
 
 def client_encryption():
     print('开始加密')
-    password = input("请输入密码:")
+    password = raw_input("请输入密码:")
     if len(password) != 16:
         print('请输入16位密码')
         exit(1)
 
-    file_url = input("请输入文件路径与文件名(如/home/test.py,...):")
+    file_url = raw_input("请输入文件路径与文件名(如/home/test.py,...):")
     files_list = file_url.split(',', -1)
     print(files_list)
     for file in files_list:

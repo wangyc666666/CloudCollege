@@ -69,8 +69,8 @@ class AES_OBJECT(object):
 
 def client_decription():
     print('开始解密')
-    password = input("请输入密码:")
-    file_url = input("请输入文件路径与文件名(如/home/test.py,...):")
+    password = raw_input("请输入密码:")
+    file_url = raw_input("请输入文件路径与文件名(如/home/test.py,...):")
     if len(password) != 16:
         print('请输入16位密码')
         exit(1)
