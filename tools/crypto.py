@@ -127,8 +127,8 @@ def register_read(client_home_file, account):
     return False
 
 def register():
-    account = input("请输入用户名:")
-    password = input("请输入密码:")
+    account = raw_input("请输入用户名:")
+    password = raw_input("请输入密码:")
     if len(password) != 16:
         print('请输入16位密码')
         exit(1)
@@ -217,8 +217,8 @@ def get_already_regist_file_name(client_home_file):
 
 def client_encryption():
     print('开始加密')
-    account = input("请输入用户名:")
-    password = input("请输入密码:")
+    account = raw_input("请输入用户名:")
+    password = raw_input("请输入密码:")
     if len(password) != 16:
         print('请输入16位密码')
         exit(1)
@@ -241,8 +241,8 @@ def client_encryption():
 
 def client_decription():
     print('开始解密')
-    account = input("请输入用户名:")
-    password = input("请输入密码:")
+    account = raw_input("请输入用户名:")
+    password = raw_input("请输入密码:")
     if len(password) != 16:
         print('请输入16位密码')
         exit(1)
