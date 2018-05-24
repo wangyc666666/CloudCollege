@@ -68,16 +68,11 @@ def Pager(page, all_page_count, url):
 		else:
 			a_html="<li><a href='%s%d'>%d</a></li>" %(url,i+1,i+1)
 			#page_html.append(a_html)
-        
-        
 
-                     
         
-	end_html="<p class='next active y'> <a href='%s%d'>下一页</a> <i class='icon-next'></p></i>"  %(url, all_page_count)
-    
+	#end_html="<p class='next active y'> <a href='%s%d'>下一页</a> <i class='icon-next'></p></i>"  %(url, all_page_count)
+	end_html = "<p class='next active y'> <a href='%s%d'>下一页</a> <i class='icon-next'></p></i>" % (url, page+1)
 	page_html.append(end_html)
-   
-    
 	page_string=mark_safe(''.join(page_html))
 	return page_string
     
