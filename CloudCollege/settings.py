@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'kbhkis9znjtr^2*1_pd#21#n)fce-8z3l%a)^881p+%vx=!g)7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True 
 
 ALLOWED_HOSTS = ['*']
 
@@ -42,8 +42,11 @@ INSTALLED_APPS = [
     'app01',
     'ckeditor',
     'djangoseo',
+    'werkzeug_debugger_runserver',
+    'django_extensions',
 ]
 
+SECURE_SSL_REDIRECT = True
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -145,7 +148,7 @@ DEFAULT_FORM_EMAIL = '674702627@qq.com'
 EMAIL_HOST = 'smtp.qq.com'                   #SMTP地址
 EMAIL_PORT = 587                             #SMTP端口
 EMAIL_HOST_USER = '674702627@qq.com'       #我自己的邮箱
-EMAIL_HOST_PASSWORD = 'uvtqwnxxxvbbxxx'                  #我的邮箱密码
+EMAIL_HOST_PASSWORD = 'uvtqwnvkvkyvbbef'                  #我的邮箱密码
 EMAIL_SUBJECT_PREFIX = u'[CoorCar网]'            #为邮件Subject-line前缀,默认是'[django]'
 EMAIL_USE_TLS = True                             #与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
 #管理员站点
@@ -164,4 +167,3 @@ MEDIA_URL = '/medias/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'medias')
 CKEDITOR_UPLOAD_PATH =  "/medias/upload_imgss/"
 
-#seo-js

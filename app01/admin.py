@@ -34,5 +34,7 @@ admin.site.register(models.DocumentData)
 admin.site.register(models.BuyCart)
 admin.site.register(models.GoodsList)
 admin.site.register(models.GotVideo)
+admin.site.register(models.Carousel)
+admin.site.register(models.Advertising)
 
 

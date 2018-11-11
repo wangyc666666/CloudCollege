@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 import uuid
 
-
 #class courses(models.Model):
 #    class Meta:
 #        verbose_name = '我要开课'
@@ -27,7 +26,33 @@ import uuid
 #        return self.title
 
 
+class Carousel(models.Model):
+    class Meta:
+        verbose_name = '图片轮播'
+        verbose_name_plural = '图片轮播'
+    title = models.CharField('标题', max_length=30)
+    summary = models.CharField('简介', max_length=256, blank=True, null=True)
+    content = RichTextField('轮播内容', blank=True, null=True)
+    newlink = models.URLField('轮播推荐文章链接', blank=True, null=True)
+    newpic = models.ImageField('封面图片(2360x700)', upload_to="upload_imgss/", default="upload_imgss/logo.jpg")
+    create_date = models.DateTimeField('发布时间', auto_now_add=True)
 
+    def __str__(self):
+        return self.title
+
+class Advertising(models.Model):
+    class Meta:
+        verbose_name = '广告位'
+        verbose_name_plural = '广告位'
+    title = models.CharField('标题', max_length=30)
+    summary = models.CharField('简介', max_length=256, blank=True, null=True)
+    content = RichTextField('广告内容', blank=True, null=True)
+    newlink = models.URLField('广告链接', blank=True, null=True)
+    newpic = models.ImageField('封面图片(280x125)', upload_to="upload_imgss/", default="upload_imgss/logo.jpg")
+    create_date = models.DateTimeField('发布时间', auto_now_add=True)
+
+    def __str__(self):
+        return self.title
 
 class News(models.Model):
     class Meta:
@@ -71,7 +96,7 @@ class DocumentData(models.Model):
     content = RichTextField('内容', blank=True, null=True)
     course_price = models.IntegerField('课程价格(默认免费)', blank=True, default=0)
     document_data = models.FileField('文档资料', upload_to="document/",default="document/20170209130422_Broods.txt")
-    newpic = models.ImageField('封面图片', upload_to="upload_imgss", default="upload_imgss/logo.jpg")
+    newpic = models.ImageField('封面图片(160x120)', upload_to="upload_imgss", default="upload_imgss/logo.jpg")
     newpic_webp = models.ImageField('封面图片.webp', upload_to="upload_imgss/", default="upload_imgss/logo.jpg")
     url = models.URLField('链接地址', default='www.askeds.com/server', blank=True, null=True)
     favor_count = models.IntegerField('点击数', default=0)
@@ -107,6 +132,8 @@ class Admin(models.Model):
 
     username = models.OneToOneField(User, blank=True, null=True)
     email = models.EmailField('邮件', blank=True, null=True)
+    wx_id = models.CharField('微信用户id', max_length=100, blank=True, null=True)
+    phone_number=models.IntegerField('电话号码',blank=True, null=True)
     user_type = models.ForeignKey("UserType", blank=True, null=True)
     user_valid = models.BooleanField('是否有效', default=False)
     userpic = models.ImageField('头像', upload_to="images/", default="images/image30.png")

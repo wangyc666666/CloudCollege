@@ -31,6 +31,9 @@ urlpatterns = [
     url(r'^doc_data/(?P<page>\d*)$', doc_data),
     url(r'^doc_category/(\d+)/(?P<page>\d*)$', doc_category),
     url(r'^docdetail/(\d+)/$', docdetail),
+    url(r'^mobile_carousel_docdetail/(\d+)/$', mobile_carousel_docdetail),
+    url(r'^carousel_docdetail/(\d+)/$', carousel_docdetail),
+    url(r'^advertising_docdetail/(\d+)/$', advertising_docdetail),
     url(r'^public_course_detail/(\d+)/$', public_course_detail),
     url(r'^videodetail/(\d+)/$',videodetail),
     url(r'^userlogin/$', userlogin),
@@ -62,7 +65,7 @@ urlpatterns = [
     url(r'^upload_image/',upload_image),
 
     url(r'^mobile_logout/$', mobile_logout),
-    url(r'^mobile_index/(?P<page>\d*)$',mobile_index),
+    url(r'^mobile_index/(?P<page>\d*)$',mobile_docindex),
     url(r'^mobile_docindex/(?P<page>\d*)$',mobile_docindex),
     url(r'^mobile_videodetail/(\d+)/$',mobile_videodetail),
     url(r'^mobile_category/(\d+)/(?P<page>\d*)$', mobile_category),
@@ -72,8 +75,17 @@ urlpatterns = [
     url(r'^mobile_register/$', mobile_register),
     url(r'^mobile_user_center/$', mobile_user_center),
     url(r'^mobile_user_push/$', mobile_user_push),
-    url(r'^test/$', test),
 
+
+
+    url(r'^get_token/$', get_token),
+    url(r'^auth_token/.*', auth_token),
+    url(r'^wx_auth/.*', wx_auth),
+    url(r'^wx_registry/.*', wx_registry),
+    url(r'^bindMobile/.*', bindMobile),
+    url(r'^wx_docindex/$', wx_docindex),
+    url(r'^wx_goodsdetail/$', wx_goodsdetail),
+    url(r'^wx_categrory/$', wx_categrory),
 
 ]
 handler404 = page_not_found
